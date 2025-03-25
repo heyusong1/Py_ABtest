@@ -1,6 +1,7 @@
 from Api_requests import *
 import re
 
+# 过滤掉对照组和空白基线组
 def data_integration(ab_url, ab_payload, ab_cookie):
     ab_data = get_ab_data(ab_url, ab_payload, ab_cookie)
     code = ab_data.get('data', {}).get('idList', [])
@@ -18,6 +19,7 @@ def data_integration(ab_url, ab_payload, ab_cookie):
             result.append(data)
     return result
 
+# 解析列表字符串，并返回一个整数列表
 def safe_parse_list(list_str: str) -> list[int]:
     # 彻底清理非法字符：去除所有非数字和逗号的字符（保留负号）
     cleaned = re.sub(r'[^\d,-]', '', list_str)

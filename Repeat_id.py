@@ -4,6 +4,7 @@ from Data_all import *
 
 REGEX_PATTERN = r'(\d+\.\d+\.\d+)\s+([^$$]+?)\s+\[(.*)$$'
 
+# 对列表数据处理，并返回正交实验组数据
 def data_out(ab_url, ab_payload, ab_cookie):
     data = data_integration(ab_url, ab_payload, ab_cookie)
     parsed = []
