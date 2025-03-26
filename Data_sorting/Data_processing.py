@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from Data_collection import *
+from Data_sorting.Data_collection import data_integration,safe_parse_list
 
 REGEX_PATTERN = r'(\d+\.\d+\.\d+)\s+([^$$]+?)\s+\[(.*)$$'
 
