@@ -9,7 +9,7 @@ def data_integration(ab_url, ab_payload, ab_cookie):
     for i in code:
         group_name = i.get('group_name')
         if group_name != "对照组" and group_name != "对照组-空白基线组":
-            print(i)
+            # print(i)
             name_parts = i.get('name', '').split()
             if len(name_parts) < 2:  # 确保名称格式正确
                 continue
