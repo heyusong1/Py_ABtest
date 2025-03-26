@@ -1,5 +1,5 @@
 import logging
-from Repeat_id import data_out
+from Data_sorting.Data_processing import data_out
 
 # 配置日志
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')

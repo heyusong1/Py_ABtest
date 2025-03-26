@@ -1,4 +1,4 @@
-from Api_requests import *
+from Api.Api_requests import *
 import re
 
 # 过滤掉对照组和空白基线组

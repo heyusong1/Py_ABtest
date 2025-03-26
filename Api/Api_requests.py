@@ -1,9 +1,10 @@
 import requests
 
-
 # 配置常量
 AUTHORIZATION = 'bb4253071b934690b900267425b1a9b2'
 REFERER = 'https://work.learnings.ai/frontend_pm/'
+
+# 获取AB数据id
 def get_ab_data(ab_url, ab_payload, ab_cookie):
     try:
         headers = {

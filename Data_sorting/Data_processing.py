@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from Data_all import *
+from Data_collection import *
 
 REGEX_PATTERN = r'(\d+\.\d+\.\d+)\s+([^$$]+?)\s+\[(.*)$$'
 
