@@ -168,15 +168,14 @@ def calculate_sets(existing_tags, tag_list):
         total_non_inter.update(non_inter)
 
     result = {
-        "交集": sorted(intersection)[0],
-        **non_intersections,
-        "总非交集": sorted(total_non_inter)[0]
+        "交集": sorted(intersection),
+        **non_intersections
     }
     return result
 
 
 # 主逻辑封装到 main 函数中
-def tag_out_data(url,production_id,payload,cookie,tag_id):
+def tag_out_data(url,payload,cookie,tag_id):
     try:
         # 步骤1：验证标签并收集数据
         id_lists = validate_and_collect_tags(tag_id, tag_quite(url, payload, cookie))
@@ -185,17 +184,24 @@ def tag_out_data(url,production_id,payload,cookie,tag_id):
         else:
             # 步骤2：计算交集和非交集
             result = calculate_sets(id_lists, tag_id)
-            print(f"比对结果:{result}")
+            return f"比对结果：{result}"
     except (ValueError, TypeError, RuntimeError) as e:
         print(f"发生错误: {e}")
 
 
-# if __name__ == '__main__':
-#     # 定义必要变量
-#     tag_id = ['A140', 'A150']
-#     production_id = "5b18ed819c560300013ddf24"  # ios
-#     url = f"https://work.learnings.ai/abtest/test/v5/cms/matrix/abtest/ids/{production_id}?production_id={production_id}"
-#     payload = {"production_id": production_id}
-#     cookie = '_ga=GA1.1.630718862.1736761800; _tea_utm_cache_1229=undefined;learnings-passport=jyzs_fIBxVOU5VhB13opp5GInoJ6SX2EidzrVd7nr50ki0R2FmWwtQqGFQweXl11;learnings-user=TlD9Gf8zXYCciyz7NTwPa4LrFyOP82H6iaaw149aollJN0yJAaDo67zdpSplbR9U1KSqv3KtXcAOOB5ZBAdjb2wW_TAXOs47t4OIR3yf4Li6dSo0u-gLHAOOYS4pI-JARkMF-TjuIhltp9TBK_Op5RpR_IBIqLcOKWZJe7F0GhzCz8H90AejGSsm9BIFbHqU83pStLc0jkOkCLDG66Ra4xCR2enfGVBTQklEtTzc0G0pF6yjgQ34toWU08MUe-bzXzCskfqPnJtCOw9tEWnEjlnYqlcq_auYNMMkpINOsmmhhsTuYWWO2KlbfPUJ7nt_8kLR8mtDmFCYNlffxzmQYD0823yEjg4SyZDQDRHuUOgiiLhAAruVWC0OZWEO-kKTciCfz2b6mrXSZAjRicNh1sitECV6aCj6xh4cNwDrN2Sjeso9q2z65luekH-3ZAC0y8TVyTaOvtC5DegKcNdktjcXUCD-b70RYguugot6tFikej8JhinVdtzbBsO2CTtDvqx5PV4WWWP4RY-HqyHx2JvAkiqiMe1aSQyhpdMOXG4ZQHjQSifHYjLekl_JnVfgjhuO0oreU38-2vPnakbHoSwCYczutnqulUvk03zgFX8_B9Qb5YCs_1RMjce99mSbNwqDKtpYsr9pqXrKwMMcitnerb-8uB1-CL5Qos_cje5oVKWLtv9Idp0iu8pK3lRR'
-#     tag_out_data(url,production_id,payload,cookie,tag_id)
-#     data_out(url,payload,cookie)
+if __name__ == '__main__':
+    # 定义必要变量
+    # tag_id = ['A140', 'A150']
+    # production_id = "5b18ed819c560300013ddf24"  # ios
+    # url = f"https://work.learnings.ai/abtest/test/v5/cms/matrix/abtest/ids/{production_id}?production_id={production_id}"
+    # payload = {"production_id": production_id}
+    # cookie = '_ga=GA1.1.630718862.1736761800; _tea_utm_cache_1229=undefined;learnings-passport=jyzs_fIBxVOU5VhB13opp5GInoJ6SX2EidzrVd7nr50ki0R2FmWwtQqGFQweXl11;learnings-user=TlD9Gf8zXYCciyz7NTwPa4LrFyOP82H6iaaw149aollJN0yJAaDo67zdpSplbR9U1KSqv3KtXcAOOB5ZBAdjb2wW_TAXOs47t4OIR3yf4Li6dSo0u-gLHAOOYS4pI-JARkMF-TjuIhltp9TBK_Op5RpR_IBIqLcOKWZJe7F0GhzCz8H90AejGSsm9BIFbHqU83pStLc0jkOkCLDG66Ra4xCR2enfGVBTQklEtTzc0G0pF6yjgQ34toWU08MUe-bzXzCskfqPnJtCOw9tEWnEjlnYqlcq_auYNMMkpINOsmmhhsTuYWWO2KlbfPUJ7nt_8kLR8mtDmFCYNlffxzmQYD0823yEjg4SyZDQDRHuUOgiiLhAAruVWC0OZWEO-kKTciCfz2b6mrXSZAjRicNh1sitECV6aCj6xh4cNwDrN2Sjeso9q2z65luekH-3ZAC0y8TVyTaOvtC5DegKcNdktjcXUCD-b70RYguugot6tFikej8JhinVdtzbBsO2CTtDvqx5PV4WWWP4RY-HqyHx2JvAkiqiMe1aSQyhpdMOXG4ZQHjQSifHYjLekl_JnVfgjhuO0oreU38-2vPnakbHoSwCYczutnqulUvk03zgFX8_B9Qb5YCs_1RMjce99mSbNwqDKtpYsr9pqXrKwMMcitnerb-8uB1-CL5Qos_cje5oVKWLtv9Idp0iu8pK3lRR'
+    # print(tag_out_data(url,payload,cookie,tag_id))
+    # # data_out(url,payload,cookie)
+    tag_id = ['AAO1', 'AAK6', 'AALb']
+    production_id = "65967fd2c42f1245636a7410"  # android
+    # production_id = "65967fd2c42f1245636a7410" #ios
+    url = f"https://work.learnings.ai/abtest/test/v5/cms/matrix/abtest/ids/{production_id}?production_id={production_id}"
+    payload = {"production_id": production_id}
+    cookie = '_ga=GA1.1.824113639.1735788668; _ga_2Z4PFG28RG=deleted; learnings-passport=1ugsxa0PtN661XWycP9Ig70NzBDStWtW91m9drj_K35bsV3GHe76MJZG9d87Qfp6; _tea_utm_cache_1229=undefined; learnings-user=lVeSR6Ly9Mm2BcY9X2kZPbWZx8T4NnIGCIqRsz1qWLl7nQC7IlCF94HmXb4XJKj3n0XCR1ppS5wj4ArYWKL7e6YqLybfFlYp59c66ouyr0gbRA9hpSST1Ip1EadnFOF0xZh_0cwr54C3FpcBOxApRwUhy-8_kZdYsbhAgextuPDBgO7rBv8z9Ifd5YNy6Z2JAGWi166nxlzt3dlJ-8WLTDxaqGLnakGwyElRlVeOkjPZ70KYa4NEucWbQWM2UI3hnd8uZEWvWx2yiT7p-5Rv8sqLQbFnP-BeIxB9U_HvDRhCHxVAZYNqeu_WUolL23Hs4ptyZI4DioVhX2ONOzXrkcNabDVPb4FCQmrGO01mZt6PRriGSxX6QAdkTIghcAy_NVH84kY72d4NGD-o_YGGD7E2yG7y_qwZW8oFpO5tMmbJaoh0QshA2wUpBG3FsZecLdvoqObZHpnBkxLUJHrurYx-tM5A-3UbUPdXq5I7o7U3imqTT22Gl0VUkl4534tGXHj__3xOfNulIK7sfp4fblN5Tv3GVBzQQi6IPU1wvN8K9Dg6P6rUFP-JKMz9U3Q6ImGitvdnrnnARN2v02jsfLK3TfkHjmOg7xj3J5ew0nrJ-Padli-tD5rn84kyy2UxbagrOmb6cPw_FixqCNAZClyi_oTkpwdxPfkEoO08Wp4suTMETnPmzKKl4jTJI3A_; _ga_2Z4PFG28RG=GS1.1.1743129511.161.1.1743129516.55.0.0'
+    print(tag_out_data(url, payload, cookie, tag_id))
