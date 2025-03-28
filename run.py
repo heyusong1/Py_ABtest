@@ -65,8 +65,9 @@ def run(url, payload, cookie,tag_id):
         logging.error(f"Input validation failed: {ve}")
         raise
 
-    # 调用核心逻辑
+    # 调用核心逻辑-按照tag筛选
     tag_out_data(url, payload, cookie, tag_id)
+    # 调用核心逻辑-按照版本号筛选
     # handle_data_output(url, payload, cookie)
 
 
